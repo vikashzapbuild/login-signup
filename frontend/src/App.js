@@ -4,6 +4,7 @@ import './App.css';
 import Login from './Login';
 import Signup from './Signup';
 import StudentSignup from './StudentSignup';
+import Loggedin from './Loggedin';
 
 
 function App() {
@@ -21,6 +22,9 @@ function App() {
             <Route exact path ='/' component = {Login}/>
             <Route exact path ='/Signup' component = {Signup}/>
             <Route exact path ='/StudentSignup' component = {StudentSignup}/>
+            <Route exact path ='/Login' component = {Login}/>
+            <Route exact path ='/Loggedin' component = {Loggedin}/>
+
         </Switch>
     </div>
     </Router>      
