@@ -17,6 +17,11 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf.urls.static import static
 from django.conf import settings
+from rest_framework import routers
+from loginapp.views import StudentSignupViewSet
+
+router = routers.DefaultRouter()
+router.register('books', StudentSignupViewSet)
 
 
 admin.site.site_header = "Student login"
@@ -25,6 +30,7 @@ admin.site.index_title = "Student login System"
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-        path('', include("loginapp.urls")),
+    path('', include("loginapp.urls")),
+    path('', include(router.urls)),
 
 ]

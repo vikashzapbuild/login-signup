@@ -15,24 +15,17 @@ from django.contrib.auth.models import User, auth
 
 
 
-class StudentSignupListCreate(APIView):
-    def get(self, request, format=None):
-        account = StudentSignup.objects.all()
-        serializer = StudentSignupSerializer(account, many=True)
-        return Response(serializer.data)
-    
-    def post(self, request, format=None):
-        serializer = StudentSignupSerializer(data=request.data)
-        print("hellooo",serializer)
-        print("serializer")
-        if serializer.is_valid():
-            print("serializer is  valid")
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        print("error at:",serializer.errors)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-class StudentSignupListPut(viewsets.ModelViewSet):
+class StudentSignupViewSet(viewsets.ModelViewSet):
     queryset = StudentSignup.objects.all()
     serializer_class = StudentSignupSerializer
-# Create your views here.
+
+    def post(self, request, *args, **kwargs):
+        id=request.data['id']
+        join_code=request.data['join_code']
+        full_name=request.data['full_name']
+        username=request.data['username']
+        password=request.data['password']
+        email=request.data['email']
+        StudentSignup.objects.create(id=id,join_code=join_code,full_name=full_name,username=username,
+        password=password,email=email)
+        return HttpResponse({'message': 'List created'}, status=200)

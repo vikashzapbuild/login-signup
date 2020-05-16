@@ -22,22 +22,7 @@ export default class StudentSignup extends Component {
             error_email:'',
         }
     }
-    handlesubmit(){
-        this.setState({
-            join_code:'',
-            full_name:'',
-            username:'',
-            password:'',
-            confirm_password:'',
-            email:'',
-            error_join_code:'',
-            error_full_name:'',
-            error_username:'',
-            error_password:'',
-            error_confirm_password:'',
-            error_email:'',
-        })
-    }
+    
     changeHandler = e => {
         this.setState({ [e.target.name]: e.target.value })
     }
@@ -61,6 +46,9 @@ export default class StudentSignup extends Component {
         }
         if (!this.state.password) {
             error_password = "*Required";
+        }
+        if (!this.state.confirm_password) {
+            error_confirm_password = "*Required";
         }
         if (this.state.password !== this.state.confirm_password) {
             error_confirm_password = "*Please type same password";
@@ -93,20 +81,16 @@ export default class StudentSignup extends Component {
             uploaddata.append('password',this.state.password);
             uploaddata.append('email',this.state.email);
             console.log(uploaddata);
-            axios.post('http://localhost:8000/', uploaddata,{
-                headers: {
-                    'Authorization': "JWT " + localStorage.getItem('token'),
-                    'Content-Type': 'application/json',
-                    'accept': 'application/json'
-                    }
-            })
+
+            axios.post('http://localhost:8000/books/', uploaddata,)
                     .then(response => {
                         console.log(response)
                     })
                     .catch(error => {
                         console.log(error)
                     })
-                this.setState(this.handleSubmit);
+                    window.location.reload(false);
+
         }
     }
     render() {

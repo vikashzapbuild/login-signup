@@ -5,6 +5,7 @@ import Login from './Login';
 import Signup from './Signup';
 import StudentSignup from './StudentSignup';
 import Loggedin from './Loggedin';
+import StudentAccount from './StudentAccount';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
             <Route exact path ='/StudentSignup' component = {StudentSignup}/>
             <Route exact path ='/Login' component = {Login}/>
             <Route exact path ='/Loggedin' component = {Loggedin}/>
+            <Route exact path ='/StudentAccount' component = {StudentAccount}/>
 
         </Switch>
     </div>
